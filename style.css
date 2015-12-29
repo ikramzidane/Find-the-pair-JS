@@ -1,0 +1,282 @@
+@import url(https://fonts.googleapis.com/css?family=Acme);
+
+html {
+  background-color: #eee;
+}
+body {
+  text-align: center;
+  font: 16px 'Acme', cursive;
+}
+.game-container {
+  margin: 0 auto;
+  text-align: center;
+  padding: 0;
+  width: 1150px;
+}
+.card {
+  min-height: 100px;
+  margin: 0 1em 1em 0;
+  perspective: 1000;
+  transition: all 0.3s ease;
+  opacity: 1;
+  transform: translateY(0);
+}
+.card.hover {
+  cursor: default;
+}
+.card.hover .flipper {
+  transform: rotateY(180deg);
+}
+.card, .front, .back {
+  width:  160px;
+  height: 190px;
+  display: inline-block; 
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+}
+.flipper {
+  transition: 0.6s;
+  transform-style: preserve-3d;
+  position: relative;
+}
+.front, .back {
+  backface-visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.front {
+  z-index: 2;
+  transform: rotateY(0deg);
+  background: #fff url('img/help.png') no-repeat center center;
+  background-size: 64px 64px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+}
+.back {
+  transform: rotateY(180deg);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+}
+.ingame .card {
+  cursor: pointer;
+}
+
+
+/* Initial 'Front page' screen  --------------- */
+.init-msg {
+  position: fixed;
+  width: 360px; height: 360px;
+  top: 40%; left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  z-index: 5;
+}
+.ingame .init-msg {
+  transform: translateX(-50%) translateY(-50%) scale(0);
+  transition: all 0s ease 1s;
+}
+.center-circle {
+  width: 360px; height: 360px;
+  background: #fff;
+  border-radius: 50%;
+  position: absolute;
+  box-shadow: 0 0 30px rgba(0,0,0,0.1);
+  transition: transform 0.5s cubic-bezier(0.785, -0.370, 0.290, 1.335) 0.4s;
+  cursor: pointer;
+}
+.ingame .center-circle {
+  transform: scale(0);
+}
+.message {
+  position: absolute;
+  top: 50%; transform: translateY(-50%);
+  width: 100%;
+  transition: 0.1s ease 0.3s;
+}
+.ingame .message {
+  opacity: 0;
+}
+.message h1 {
+  font-size: 48px;
+  font-weight: normal;
+  margin: 0 0 15px;
+  color: #FC354C;
+}
+.message p {
+  color: #444;
+  font: 13px tahoma, Helvetica, "Segoe UI", Verdana, Arial;
+  letter-spacing: 1px;
+  margin: 0 0 0;
+}
+
+
+/* Winning Message  --------------- */
+.winning-msg {
+  background: rgba(238, 238, 238, 0.95);
+  position: fixed;
+  top: 0; left: 0; bottom: 0; right: 0;
+  transition: all 0.7s ease 0.7s;
+  opacity: 0;
+  cursor: pointer;
+  z-index: -1;
+}
+.winning-msg.reveal {
+  opacity: 1;
+  z-index: 1;
+}
+.win-msg-content {
+  position: absolute;
+  top: 45%; left: 50%; transform: translateX(-50%) translateY(-50%);
+}
+.winning-msg h1 {
+  color: #333;
+  font-size: 76px;
+  margin: 0 0 10px;
+  transition: all 0.3s ease 1.5s;
+  opacity: 0;
+  -webkit-backface-visibility: hidden;
+  transform: translateY(-30px) translateZ(0) scale(1.0, 1.0);
+}
+.winning-msg.reveal h1 {
+  opacity: 1;
+  transform: translateY(0) translateZ(0) scale(1.0, 1.0);
+}
+
+.winning-msg p {
+  margin: 0 0 0;
+  font: 15px/1.5 "Segoe UI", tahoma, Helvetica, Verdana, Arial;
+  letter-spacing: 1px;
+  color: #555;
+  transition: all 0.3s ease 1.7s;
+  opacity: 0;
+  -webkit-backface-visibility: hidden;
+  transform: translateY(20px) translateZ(0) scale(1.0, 1.0);
+}
+
+.winning-msg.reveal p {
+  opacity: 1;
+  transform: translateY(0) translateZ(0) scale(1.0, 1.0);
+}
+
+
+
+
+/* Footer  --------------- */
+.footer {
+  position: fixed;
+  bottom: 60px;
+  width: 100%;
+  color: #888;
+  transition: all 0.5s cubic-bezier(0.785, -0.370, 0.290, 1.335);
+  font: 13px tahoma, "segoe UI", Helvetica, Arial;
+  letter-spacing: 1px;
+  z-index: 5;
+}
+.ingame .footer {
+  bottom: -30px;
+}
+.footer a {
+  color: #111;
+  text-decoration: none;
+  border-bottom: 1px solid #bbb;
+  padding-bottom: 2px;
+}
+.footer a:hover {
+  color: #000;
+  border-bottom: 1px solid #555;
+}
+
+
+/* Card background images  --------------- */
+.card[data-key="dog"] .back {
+  background: #fff url('img/dog.png') no-repeat;
+}
+.card[data-key="monkey"] .back {
+  background: #fff url('img/monkey.png') no-repeat -100% 0;
+}
+.card[data-key="chicken"] .back {
+  background: #fff url('img/chicken.png') no-repeat -10% 25%;
+}
+.card[data-key="penguin"] .back {
+  background: #fff url('img/penguin.png') no-repeat;
+}
+.card[data-key="tiger"] .back {
+  background: #fff url('img/tiger.png') no-repeat;
+}
+.card[data-key="fox"] .back {
+  background: #fff url('img/fox.png') no-repeat -5% 40%;
+}
+.card[data-key="owl"] .back {
+  background: #fff url('img/owl.png') no-repeat;
+}
+.card[data-key="pig"] .back {
+  background: #fff url('img/pig.png') no-repeat;
+}
+.card[data-key="cow"] .back {
+  background: #fff url('img/cow.png') no-repeat;
+}
+
+
+/* Card transitional delays  --------------- */
+.game-container .card {
+  opacity: 0; transform: translateY(-20px);
+}
+.ingame .game-container .card {
+  opacity: 1; transform: translateY(0);
+}
+.game-container .card:nth-child(0) {
+   transition-delay: 1;
+}
+.game-container .card:nth-child(1) {
+   transition-delay: 1.1s;
+}
+.game-container .card:nth-child(2) {
+   transition-delay: 1.2s;
+}
+.game-container .card:nth-child(3) {
+   transition-delay: 1.3s;
+}
+.game-container .card:nth-child(4) {
+   transition-delay: 1.4s;
+}
+.game-container .card:nth-child(5) {
+   transition-delay: 1.5s;
+}
+.game-container .card:nth-child(6) {
+   transition-delay: 1.6s;
+}
+.game-container .card:nth-child(7) {
+   transition-delay: 1.7s;
+}
+.game-container .card:nth-child(8) {
+   transition-delay: 1.8s;
+}
+.game-container .card:nth-child(9) {
+   transition-delay: 1.9s;
+}
+.game-container .card:nth-child(10) {
+   transition-delay: 2s;
+}
+.game-container .card:nth-child(11) {
+   transition-delay: 2.1s;
+}
+.game-container .card:nth-child(12) {
+   transition-delay: 2.2s;
+}
+.game-container .card:nth-child(13) {
+   transition-delay: 2.3s;
+}
+.game-container .card:nth-child(14) {
+   transition-delay: 2.4s;
+}
+.game-container .card:nth-child(15) {
+   transition-delay: 2.5s;
+}
+.game-container .card:nth-child(16) {
+   transition-delay: 2.6s;
+}
+.game-container .card:nth-child(17) {
+   transition-delay: 2.7s;
+}
+.game-container .card:nth-child(18) {
+   transition-delay: 2.8s;
+}
+
