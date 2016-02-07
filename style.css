@@ -1,31 +1,41 @@
 @import url(https://fonts.googleapis.com/css?family=Acme);
 
+* {
+  margin: 0; padding: 0;
+  box-sizing: border-box;
+}
+
 html {
   background-color: #eee;
 }
 body {
   text-align: center;
-  font: 16px 'Acme', cursive;
+  font: 16px 'Acme', Helvetica, Arial, sans-serif;
 }
 .game-container {
   margin: 0 auto;
   text-align: center;
-  padding: 0;
+  padding: 0; padding-top: 1em;
   width: 1150px;
 }
+
 .card {
   min-height: 100px;
   margin: 0 1em 1em 0;
-  perspective: 1000;
+  -webkit-perspective: 1000;
+          perspective: 1000;
+  -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
   opacity: 1;
-  transform: translateY(0);
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
 }
 .card.hover {
   cursor: default;
 }
 .card.hover .flipper {
-  transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
+          transform: rotateY(180deg);
 }
 .card, .front, .back {
   width:  160px;
@@ -35,25 +45,30 @@ body {
   -webkit-border-radius: 4px;
 }
 .flipper {
+  -webkit-transition: 0.6s;
   transition: 0.6s;
-  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
   position: relative;
 }
 .front, .back {
-  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
   position: absolute;
   top: 0;
   left: 0;
 }
 .front {
   z-index: 2;
-  transform: rotateY(0deg);
+  -webkit-transform: rotateY(0deg);
+          transform: rotateY(0deg);
   background: #fff url('img/help.png') no-repeat center center;
   background-size: 64px 64px;
   box-shadow: 0 1px 2px rgba(0,0,0,0.15);
 }
 .back {
-  transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
+          transform: rotateY(180deg);
   box-shadow: 0 1px 2px rgba(0,0,0,0.15);
 }
 .ingame .card {
@@ -66,11 +81,14 @@ body {
   position: fixed;
   width: 360px; height: 360px;
   top: 40%; left: 50%;
-  transform: translateX(-50%) translateY(-50%);
+  -webkit-transform: translateX(-50%) translateY(-50%);
+          transform: translateX(-50%) translateY(-50%);
   z-index: 5;
 }
 .ingame .init-msg {
-  transform: translateX(-50%) translateY(-50%) scale(0);
+  -webkit-transform: translateX(-50%) translateY(-50%) scale(0);
+          transform: translateX(-50%) translateY(-50%) scale(0);
+  -webkit-transition: all 0s ease 1s;
   transition: all 0s ease 1s;
 }
 .center-circle {
@@ -79,16 +97,19 @@ body {
   border-radius: 50%;
   position: absolute;
   box-shadow: 0 0 30px rgba(0,0,0,0.1);
+  -webkit-transition: -webkit-transform 0.5s cubic-bezier(0.785, -0.370, 0.290, 1.335) 0.4s;
   transition: transform 0.5s cubic-bezier(0.785, -0.370, 0.290, 1.335) 0.4s;
   cursor: pointer;
 }
 .ingame .center-circle {
-  transform: scale(0);
+  -webkit-transform: scale(0);
+          transform: scale(0);
 }
 .message {
   position: absolute;
-  top: 50%; transform: translateY(-50%);
+  top: 50%; -webkit-transform: translateY(-50%); transform: translateY(-50%);
   width: 100%;
+  -webkit-transition: 0.1s ease 0.3s;
   transition: 0.1s ease 0.3s;
 }
 .ingame .message {
@@ -113,6 +134,7 @@ body {
   background: rgba(238, 238, 238, 0.95);
   position: fixed;
   top: 0; left: 0; bottom: 0; right: 0;
+  -webkit-transition: all 0.7s ease 0.7s;
   transition: all 0.7s ease 0.7s;
   opacity: 0;
   cursor: pointer;
@@ -124,20 +146,23 @@ body {
 }
 .win-msg-content {
   position: absolute;
-  top: 45%; left: 50%; transform: translateX(-50%) translateY(-50%);
+  top: 45%; left: 50%; -webkit-transform: translateX(-50%) translateY(-50%); transform: translateX(-50%) translateY(-50%);
 }
 .winning-msg h1 {
   color: #333;
   font-size: 76px;
   margin: 0 0 10px;
+  -webkit-transition: all 0.3s ease 1.5s;
   transition: all 0.3s ease 1.5s;
   opacity: 0;
   -webkit-backface-visibility: hidden;
-  transform: translateY(-30px) translateZ(0) scale(1.0, 1.0);
+  -webkit-transform: translateY(-30px) translateZ(0) scale(1.0, 1.0);
+          transform: translateY(-30px) translateZ(0) scale(1.0, 1.0);
 }
 .winning-msg.reveal h1 {
   opacity: 1;
-  transform: translateY(0) translateZ(0) scale(1.0, 1.0);
+  -webkit-transform: translateY(0) translateZ(0) scale(1.0, 1.0);
+          transform: translateY(0) translateZ(0) scale(1.0, 1.0);
 }
 
 .winning-msg p {
@@ -145,15 +170,18 @@ body {
   font: 15px/1.5 "Segoe UI", tahoma, Helvetica, Verdana, Arial;
   letter-spacing: 1px;
   color: #555;
+  -webkit-transition: all 0.3s ease 1.7s;
   transition: all 0.3s ease 1.7s;
   opacity: 0;
   -webkit-backface-visibility: hidden;
-  transform: translateY(20px) translateZ(0) scale(1.0, 1.0);
+  -webkit-transform: translateY(20px) translateZ(0) scale(1.0, 1.0);
+          transform: translateY(20px) translateZ(0) scale(1.0, 1.0);
 }
 
 .winning-msg.reveal p {
   opacity: 1;
-  transform: translateY(0) translateZ(0) scale(1.0, 1.0);
+  -webkit-transform: translateY(0) translateZ(0) scale(1.0, 1.0);
+          transform: translateY(0) translateZ(0) scale(1.0, 1.0);
 }
 
 
@@ -165,6 +193,7 @@ body {
   bottom: 60px;
   width: 100%;
   color: #888;
+  -webkit-transition: all 0.5s cubic-bezier(0.785, -0.370, 0.290, 1.335);
   transition: all 0.5s cubic-bezier(0.785, -0.370, 0.290, 1.335);
   font: 13px tahoma, "segoe UI", Helvetica, Arial;
   letter-spacing: 1px;
@@ -214,69 +243,142 @@ body {
   background: #fff url('img/cow.png') no-repeat;
 }
 
-
 /* Card transitional delays  --------------- */
 .game-container .card {
-  opacity: 0; transform: translateY(-20px);
+  opacity: 0; -webkit-transform: translateY(-20px); transform: translateY(-20px);
 }
 .ingame .game-container .card {
-  opacity: 1; transform: translateY(0);
+  opacity: 1; -webkit-transform: translateY(0); transform: translateY(0);
 }
 .game-container .card:nth-child(0) {
-   transition-delay: 1;
+   -webkit-transition-delay: 1;
+           transition-delay: 1;
 }
 .game-container .card:nth-child(1) {
-   transition-delay: 1.1s;
+   -webkit-transition-delay: 1.1s;
+           transition-delay: 1.1s;
 }
 .game-container .card:nth-child(2) {
-   transition-delay: 1.2s;
+   -webkit-transition-delay: 1.2s;
+           transition-delay: 1.2s;
 }
 .game-container .card:nth-child(3) {
-   transition-delay: 1.3s;
+   -webkit-transition-delay: 1.3s;
+           transition-delay: 1.3s;
 }
 .game-container .card:nth-child(4) {
-   transition-delay: 1.4s;
+   -webkit-transition-delay: 1.4s;
+           transition-delay: 1.4s;
 }
 .game-container .card:nth-child(5) {
-   transition-delay: 1.5s;
+   -webkit-transition-delay: 1.5s;
+           transition-delay: 1.5s;
 }
 .game-container .card:nth-child(6) {
-   transition-delay: 1.6s;
+   -webkit-transition-delay: 1.6s;
+           transition-delay: 1.6s;
 }
 .game-container .card:nth-child(7) {
-   transition-delay: 1.7s;
+   -webkit-transition-delay: 1.7s;
+           transition-delay: 1.7s;
 }
 .game-container .card:nth-child(8) {
-   transition-delay: 1.8s;
+   -webkit-transition-delay: 1.8s;
+           transition-delay: 1.8s;
 }
 .game-container .card:nth-child(9) {
-   transition-delay: 1.9s;
+   -webkit-transition-delay: 1.9s;
+           transition-delay: 1.9s;
 }
 .game-container .card:nth-child(10) {
-   transition-delay: 2s;
+   -webkit-transition-delay: 2s;
+           transition-delay: 2s;
 }
 .game-container .card:nth-child(11) {
-   transition-delay: 2.1s;
+   -webkit-transition-delay: 2.1s;
+           transition-delay: 2.1s;
 }
 .game-container .card:nth-child(12) {
-   transition-delay: 2.2s;
+   -webkit-transition-delay: 2.2s;
+           transition-delay: 2.2s;
 }
 .game-container .card:nth-child(13) {
-   transition-delay: 2.3s;
+   -webkit-transition-delay: 2.3s;
+           transition-delay: 2.3s;
 }
 .game-container .card:nth-child(14) {
-   transition-delay: 2.4s;
+   -webkit-transition-delay: 2.4s;
+           transition-delay: 2.4s;
 }
 .game-container .card:nth-child(15) {
-   transition-delay: 2.5s;
+   -webkit-transition-delay: 2.5s;
+           transition-delay: 2.5s;
 }
 .game-container .card:nth-child(16) {
-   transition-delay: 2.6s;
+   -webkit-transition-delay: 2.6s;
+           transition-delay: 2.6s;
 }
 .game-container .card:nth-child(17) {
-   transition-delay: 2.7s;
+   -webkit-transition-delay: 2.7s;
+           transition-delay: 2.7s;
 }
 .game-container .card:nth-child(18) {
-   transition-delay: 2.8s;
+   -webkit-transition-delay: 2.8s;
+           transition-delay: 2.8s;
 }
 
+
+@media screen and (max-width: 1150px) {
+  .game-container {
+    width: 95%;
+  }
+}
+@media screen and (max-width: 768px) {
+  .game-container {
+    width: 100%;
+  }
+  .card .back {
+    background-position: top center !important;
+    background-size: cover !important;
+  }
+  .footer {
+    padding: 0 15px;
+    line-height: 1.8;
+  }
+  .ingame .footer {
+    bottom: -40px;
+  }
+  .card {
+    margin: 0 0.6em 0.6em 0;
+  }
+  .card, .front, .back {
+    width:  150px;
+    height: 178px;
+  }
+  .win-msg-content {
+    width: 90%;
+  }
+}
+@media screen and (max-width: 400px ) {
+  .message h1 {
+    font-size: 12vw;
+  }
+  .init-msg {
+    width: 300px;
+    height: 300px;
+  }
+  .center-circle {
+    width: 300px;
+    height: 300px;
+  }
+  .ingame .footer {
+    bottom: -80px;
+  }
+  .card {
+    margin: 0 0.4em 0.4em 0;
+  }
+  .card, .front, .back {
+    width:  130px;
+    height: 154px;
+  }
+}
